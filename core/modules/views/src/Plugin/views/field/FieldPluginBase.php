@@ -1168,7 +1168,7 @@ abstract class FieldPluginBase extends HandlerBase implements FieldHandlerInterf
 
         $value = $this->renderItems($items);
       }
-      else {
+      else if (!empty($this->options['alter'])) {
         $alter = ['phase' => static::RENDER_TEXT_PHASE_COMPLETELY] + $this->options['alter'];
         $value = $this->renderText($alter);
       }
