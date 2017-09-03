@@ -1,0 +1,13 @@
+diff --git a/core/modules/views/src/Plugin/views/field/FieldPluginBase.php b/core/modules/views/src/Plugin/views/field/FieldPluginBase.php
+index 460621f..8683ae4 100644
+--- a/core/modules/views/src/Plugin/views/field/FieldPluginBase.php
++++ b/core/modules/views/src/Plugin/views/field/FieldPluginBase.php
+@@ -1164,7 +1164,7 @@ public function advancedRender(ResultRow $values) {
+ 
+         $value = $this->renderItems($items);
+       }
+-      else {
++      else if (!empty($this->options['alter'])) {
+         $alter = array('phase' => static::RENDER_TEXT_PHASE_COMPLETELY) + $this->options['alter'];
+         $value = $this->renderText($alter);
+       }
