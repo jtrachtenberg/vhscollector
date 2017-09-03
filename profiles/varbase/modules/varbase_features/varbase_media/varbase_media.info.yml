@@ -1,0 +1,33 @@
+name: 'Varbase Media'
+description: 'Manages type of media contents and entity browsers in the site.'
+type: module
+package: Varbase
+dependencies:
+  0: advanced_text_formatter
+  1: blazy
+  3: crop
+  4: dropzonejs_eb_widget
+  5: ds
+  6: embed
+  7: entity_browser
+  8: entity_embed
+  9: field
+  10: file
+  11: focal_point
+  12: image
+  14: media_entity
+  15: media_entity_document
+  16: media_entity_image
+  17: node
+  18: responsive_image
+  19: system
+  20: user
+  21: varbase_core
+  22: video_embed_field
+  23: video_embed_media
+  24: views
+  25: views_infinite_scroll
+version: 8.x-4.07
+core: 8.x
+project: varbase
+datestamp: 1503265596

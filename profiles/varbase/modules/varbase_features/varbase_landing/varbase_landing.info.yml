@@ -1,0 +1,29 @@
+name: 'Varbase Landing'
+description: 'Provides the basis for Landing Pages, which are built to include appealing stacked components that are visually separate.'
+type: module
+dependencies:
+  0: advanced_text_formatter
+  2: ds
+  3: entity_reference_revisions
+  4: field
+  5: field_group
+  7: maxlength
+  8: menu_ui
+  9: metatag
+  10: node
+  11: paragraphs
+  12: path
+  13: pathauto
+  14: rabbit_hole
+  15: user
+  16: varbase_bootstrap_paragraphs
+  17: varbase_core
+  18: varbase_seo
+  19: varbase_webform
+  20: viewsreference
+  21: yoast_seo
+package: Varbase
+version: 8.x-4.07
+core: 8.x
+project: varbase
+datestamp: 1503265596
