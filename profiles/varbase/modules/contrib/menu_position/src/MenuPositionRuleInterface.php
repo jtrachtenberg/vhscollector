@@ -47,20 +47,6 @@ interface MenuPositionRuleInterface extends ConfigEntityInterface {
   public function getMenuLink();
 
   /**
-   * Returns the menu name
-   * @return string
-   *    The menu name
-   */
-  public function getMenuName();
-
-  /**
-   * Returns the parent menu item
-   * @return string
-   *    The parent menu item
-   */
-  public function getParent();
-
-  /**
    * Returns weight for the particular menu position rule
    * @return integer
    *    Weight for the particular rule
@@ -96,20 +82,6 @@ interface MenuPositionRuleInterface extends ConfigEntityInterface {
    *    The menu link id
    */
   public function setMenuLink($menu_link);
-
-  /**
-   * Sets the menu name
-   * @return string $menu_name
-   *    The menu name
-   */
-  public function setMenuName($menu_name);
-
-  /**
-   * Sets the parent link id
-   * @return string $parent_link_id
-   *    The parent menu link id
-   */
-  public function setParent($parent);
 
   /**
    * Sets weight for the particular menu position rule

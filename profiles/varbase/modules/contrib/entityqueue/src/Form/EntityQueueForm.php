@@ -94,8 +94,7 @@ class EntityQueueForm extends BundleEntityFormBase {
     $form['label'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Name'),
-      '#maxlength' => 32,
-      '#size' => 32,
+      '#maxlength' => 255,
       '#default_value' => $queue->label(),
       '#description' => $this->t('The human-readable name of this entity queue. This name must be unique.'),
       '#required' => TRUE,

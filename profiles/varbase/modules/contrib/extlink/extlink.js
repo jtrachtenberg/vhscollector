@@ -108,40 +108,32 @@
 
     if (drupalSettings.data.extlink.extTarget) {
       // Apply the target attribute to all links.
-      $(external_links).attr({target: '_blank'});
-
-      // Add noopener and noreferrer rel attributes to combat phishing.
-      $(external_links).attr('rel', function (i, val) {
-        // If no rel attribute is present, create one with the values noopener and noreferrer.
-        if (val === null || typeof val === 'undefined') {
-          return 'noopener noreferrer';
-        }
-        // Check to see if rel contains noopener or noreferrer. Add what doesn't exist.
-        if (val.indexOf('noopener') > -1 || val.indexOf('noreferrer') > -1) {
-          if (val.indexOf('noopener') === -1) {
-            return val + ' noopener';
+      if (drupalSettings.data.extlink.extTarget) {
+        $(external_links).attr({target:'_blank', rel:'nofollow'});
+        $(external_links).attr('rel', function (i, val) {
+          // If no rel attribute is present, create one with the values noopener and noreferrer.
+          if (val === null) {
+            return 'noopener nofererer';
           }
-          if (val.indexOf('noreferrer') === -1) {
-            return val + ' noreferrer';
+          // Check to see if rel contains noopener or noreferrer. Add what doesn't exist.
+          if (val.indexOf('noopener') > -1 || val.indexOf('noreferrer') > -1) {
+            if (val.indexOf('noopener') === -1) {
+              return val + ' noopener';
+            }
+            if (val.indexOf('noreferrer') === -1) {
+              return val + ' noreferrer';
+            }
+            // Both noopener and noreferrer exist. Nothing needs to be added.
+            else {
+              return val;
+            }
           }
-          // Both noopener and noreferrer exist. Nothing needs to be added.
+          // Else, append noopener and noreferrer to val.
           else {
-            return val;
+            return val + ' noopener nofererer';
           }
-        }
-        // Else, append noopener and noreferrer to val.
-        else {
-          return val + ' noopener noreferrer';
-        }
-      });
-    }
-
-    if (drupalSettings.data.extlink.extNofollow) {
-      $(external_links).attr('rel', function (i, val) {
-        if (val.indexOf('nofollow') === -1) {
-          return val + ' nofollow';
-        }
-      });
+        });
+      }
     }
 
     Drupal.extlink = Drupal.extlink || {};
@@ -149,10 +141,10 @@
     // Set up default click function for the external links popup. This should be
     // overridden by modules wanting to alter the popup.
     Drupal.extlink.popupClickHandler = Drupal.extlink.popupClickHandler || function () {
-        if (drupalSettings.data.extlink.extAlert) {
-          return confirm(drupalSettings.data.extlink.extAlertText);
-        }
-      };
+      if (drupalSettings.data.extlink.extAlert) {
+        return confirm(drupalSettings.data.extlink.extAlertText);
+      }
+    };
 
     $(external_links).click(function (e) {
       return Drupal.extlink.popupClickHandler(e, this);
@@ -176,19 +168,17 @@
       var links_with_images = $(links).find('img').parents('a');
       $links_to_process = $(links).not(links_with_images);
     }
-    if (class_name !== '0') {
-      $links_to_process.addClass(class_name);
-    }
+    $links_to_process.addClass(class_name);
     var i;
     var length = $links_to_process.length;
     for (i = 0; i < length; i++) {
       var $link = $($links_to_process[i]);
-      if (class_name !== '0' && ($link.css('display') === 'inline' || $link.css('display') === 'inline-block' || $link.css('display') === 'block')) {
+      if ($link.css('display') === 'inline' || $link.css('display') === 'inline-block' || $link.css('display') === 'block') {
         if (class_name === drupalSettings.data.extlink.mailtoClass) {
-          $link.append('<span class="' + class_name + '"><span class="element-invisible">' + drupalSettings.data.extlink.mailtoLabel + '</span></span>');
+          $link.append('<span class="' + class_name + '"><span class="element-invisible"> ' + drupalSettings.data.extlink.mailtoLabel + '</span></span>');
         }
         else {
-          $link.append('<span class="' + class_name + '"><span class="element-invisible">' + drupalSettings.data.extlink.extLabel + '</span></span>');
+          $link.append('<span class="' + class_name + '"><span class="element-invisible"> ' + drupalSettings.data.extlink.extLabel + '</span></span>');
         }
       }
     }

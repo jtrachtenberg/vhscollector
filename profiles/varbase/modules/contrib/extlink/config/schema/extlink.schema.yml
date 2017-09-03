@@ -7,9 +7,6 @@ extlink.settings:
     extlink_target:
       type: boolean
       label: 'Open external links in a new window'
-    extlink_nofollow:
-      type: boolean
-      label: 'Tag external links as "no follow"'
     extlink_subdomains:
       type: boolean
       label: 'Consider subdomains internal'

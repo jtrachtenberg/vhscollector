@@ -73,7 +73,7 @@ class ContentLockSettingsForm extends ConfigFormBase {
     ];
     $form['general']['verbose'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('Enable this option to display messages to editor when he locks a content by editing it.'),
+      '#title' => $this->t('Enable this option to display a message to the user when they lock a content item by editing it.'),
       '#description' => $this->t('Users trying to edit a content locked still see the content lock message.'),
       '#default_value' => $config->get('verbose'),
       '#return_value' => 1,
@@ -145,7 +145,7 @@ class ContentLockSettingsForm extends ConfigFormBase {
    * @return array
    *   The array without empty values.
    */
-  protected function removeEmptyValue($array) {
+  protected function removeEmptyValue(array $array) {
     return array_filter($array, function ($value) {
       return !empty($value);
     });
@@ -165,7 +165,7 @@ class ContentLockSettingsForm extends ConfigFormBase {
    *
    * @see _entity_reference_field_settings_process()
    */
-  public static function formProcessMergeParent($element) {
+  public static function formProcessMergeParent(array $element) {
     $parents = $element['#parents'];
     array_pop($parents);
     $element['#parents'] = $parents;

@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\image_resize_filter\Plugin\Filter\FilterImageLinkToSource.
- */
-
 namespace Drupal\image_resize_filter\Plugin\Filter;
 
 use Drupal\Component\Utility\Html;

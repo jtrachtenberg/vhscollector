@@ -47,11 +47,9 @@ use Drupal\user\UserInterface;
  *   field_ui_base_route = "entity.entity_queue.edit_form",
  *   permission_granularity = "bundle",
  *   links = {
+ *     "canonical" = "/admin/structure/entityqueue/{entity_queue}",
  *     "edit-form" = "/admin/structure/entityqueue/{entity_queue}/{entity_subqueue}",
- *     "delete-form" = "/admin/structure/entityqueue/{entity_queue}/{entity_subqueue}/delete",
- *     "collection" = "/admin/structure/entityqueue/{entity_queue}/list",
- *     "add-item" = "/admin/structure/entityqueue/{entity_queue}/{entity_subqueue}/{entity}/add-item",
- *     "remove-item" = "/admin/structure/entityqueue/{entity_queue}/{entity_subqueue}/{entity}/remove-item"
+ *     "delete-form" = "/admin/structure/entityqueue/{entity_queue}/{entity_subqueue}/delete"
  *   },
  *   constraints = {
  *     "QueueSize" = {}
@@ -275,28 +273,6 @@ class EntitySubqueue extends ContentEntityBase implements EntitySubqueueInterfac
    */
   public function setOwner(UserInterface $account) {
     $this->set('uid', $account->id());
-    return $this;
-  }
-
-  /**
-   * Adds an entity to a subqueue
-   */
-  public function addItem($entity_id) {
-    $this->get('items')->appendItem($entity_id);
-    return $this;
-  }
-
-  /**
-   * Removes an entity from a subqueue
-   */
-  public function removeItem($entity_id) {
-    $subqueue_items = $this->get('items')->getValue();
-    foreach ($subqueue_items as $key => $item) {
-      if ($item['target_id'] == $entity_id) {
-        unset($subqueue_items[$key]);
-      }
-    }
-    $this->get('items')->setValue($subqueue_items);
     return $this;
   }
 
